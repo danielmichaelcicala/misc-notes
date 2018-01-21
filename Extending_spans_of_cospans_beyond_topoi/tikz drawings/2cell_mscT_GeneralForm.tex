@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+%
+%
+%
+\node (1) at (-1,0) {};
+\node (2) at (0,1) {};
+\node (3) at (0,0) {};
+\node (4) at (0,-1) {};
+\node (5) at (1,0) {};
+%
+\draw [->]  (1) edge [out=90,in=180] (2);
+\draw [->] (1) edge (3);
+\draw [->] (1) edge [out=-90,in=180] (4);
+\draw [->] (5) edge [out=90,in=0] (2);
+\draw [->] (5) edge (3);
+\draw [->] (5) edge [out=-90,in=0] (4);
+\draw [>->] (3) edge (2);
+\draw [>->] (3) edge (4);
+%
+%
+%
+\end{tikzpicture}

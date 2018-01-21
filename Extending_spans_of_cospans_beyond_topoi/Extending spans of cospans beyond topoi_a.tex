@@ -1,0 +1,475 @@
+\documentclass[11pt]{amsart}
+
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-3in}
+\calclayout
+
+%LOAD PACKAGES--------------------------------------------
+
+\usepackage{amsfonts, amsthm, amssymb, amsmath, stmaryrd, etoolbox}
+\usepackage{comment}
+\usepackage{mathtools}
+\usepackage{graphicx,caption,subcaption}
+\usepackage{todonotes}
+\usepackage{xcolor}
+
+\usepackage[inline]{enumitem}
+\setlist{itemsep=0em, topsep=0em, parsep=0em}
+\setlist[enumerate]{label=(\alph*)}
+
+\usepackage{tikz}
+\usepackage[all,2cell]{xy}
+\usetikzlibrary{matrix,arrows,shapes,decorations.markings,decorations.pathreplacing}
+\definecolor{rewritecolor}{rgb}{0,.9,1}
+\tikzset{rewritenode/.style={shape=circle,fill=rewritecolor,scale=0.25,font=\Huge}}
+\tikzset{RWopen/.style={shape=circle,draw=black,fill=white,scale=0.5,font=\Huge}}
+\tikzset{RWclosed/.style={shape=circle,fill=black,scale=0.5,font=\Huge}}
+\tikzset{CDnode/.style={shape=circle,fill=white,scale=.5}}
+\tikzset{zxgreen/.style={shape=circle,draw,thick,fill=green}}
+\tikzset{zxred/.style={shape=circle,draw,thick,fill=red}}
+\tikzset{zxyellow/.style={shape=rectangle,draw,thick,fill=yellow}}
+\tikzset{zxdiamond/.style={shape=diamond,fill=black,inner sep=2.75}}
+\tikzset{zxopen/.style={shape=circle,draw,thick,inner sep=2pt}}
+\tikzset{->-/.style={decoration={%
+			markings,
+			mark=at position .5 with {\arrow{>}}},postaction={decorate}}
+}
+\tikzset{->-pos/.style={decoration={%
+			markings,
+			mark=at position #1 with {\arrow{>}}},postaction={decorate}}
+}
+
+\usepackage{hyperref}
+\definecolor{hyperrefcolor}{rgb}{0,0,0.7}
+\hypersetup{colorlinks,linkcolor={hyperrefcolor},citecolor={hyperrefcolor},urlcolor={hyperrefcolor}}
+
+%NEW COMMANDS---------------------------------------------
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\MM}{\mathbb{M}}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\cl}[1]{\mathcal{#1}}
+\newcommand{\scr}[1]{\mathscr{#1}}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\cat}[1]{\mathbf{#1}}
+\newcommand{\dblcat}[1]{\mathbb{#1}}
+\renewcommand{\t}[1]{\textup{#1}}
+
+\newcommand{\from}{\colon}
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\sm}{\smallsetminus}
+\newcommand{\tospan}{\xrightarrow{\mathit{sp}}}
+\newcommand{\tocospan}{\xrightarrow{\mathit{csp}}}
+
+%\newcommand{\diagram}[1]{\raisebox{-0.5\height}{\includegraphics{#1}}}
+
+\newcommand{\bluebullet}{\textcolor{rewritecolor}{\bullet}}
+
+%  macros for (co)span bicategories
+\newcommand{\bispmap}[1]{\mathbf{Sp(#1)}}
+\newcommand{\dblspmap}[1]{\mathbb{S}\mathbf{p(#1)}}
+\newcommand{\bicspmap}[1]{\mathbf{Csp(#1)}}
+\newcommand{\dblcspmap}[1]{\mathbb{C}\mathbf{sp(#1)}}
+\newcommand{\bispsp}[1]{\mathbf{Sp(Sp(#1))}}
+\newcommand{\dblspsp}[1]{\mathbb{S}\mathbf{p(Sp(#1))}}
+\newcommand{\bicspcsp}[1]{\mathbf{Csp(Csp(#1))}}
+\newcommand{\dblcspcsp}[1]{\mathbb{C}\mathbf{sp(Csp(#1))}}
+\newcommand{\bimonspcsp}[1]{\mathbf{MonicSp(Csp(#1))}}
+\newcommand{\dblmonspcsp}[1]{\mathbb{M}\mathbf{onicSp(Csp(#1))}}
+\newcommand{\biepiccspsp}[1]{\mathbf{EpicCsp(Sp(#1))}}
+\newcommand{\dblepiccspsp}[1]{\mathbb{E}\mathbf{picCsp(Sp(#1))}}
+
+% defining arrow with a vertical line through it
+\makeatletter
+\def\slashedarrowfill@#1#2#3#4#5{%
+	$\m@th\thickmuskip0mu\medmuskip\thickmuskip\thinmuskip\thickmuskip
+	\relax#5#1\mkern-7mu%
+	\cleaders\hbox{$#5\mkern-2mu#2\mkern-2mu$}\hfill
+	\mathclap{#3}\mathclap{#2}%
+	\cleaders\hbox{$#5\mkern-2mu#2\mkern-2mu$}\hfill
+	\mkern-7mu#4$%
+}
+\def\rightslashedarrowfill@{%
+	\slashedarrowfill@\relbar\relbar\mapstochar\rightarrow}
+\newcommand{\xslashedrightarrow}[2][]{%
+	\ext@arrow 0055{\rightslashedarrowfill@}{#1}{#2}}
+\makeatother
+
+\newcommand{\hto}{\xslashedrightarrow{}}
+
+
+%DECLARE MATH OPERATORS----------------------------------
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ob}{Ob}
+\DeclareMathOperator{\arr}{arr}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Bij}{Bij}
+\DeclareMathOperator{\Sub}{Sub}
+
+%ENVIRONMENTS AND COUNTERS---------------------------------
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{notation}[thm]{Notation}
+
+\theoremstyle{definition}
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{defn}[thm]{Definition}
+
+%\setcounter{tocdepth}{1} % Sets depth for table of contents. 
+
+% FOR THIS PAPER ONLY
+
+\newcommand{\zx}{_{\text{zx}}}
+\newcommand{\bicat}[1]{\underline{\mathbf{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%BEGIN DOCUMENT
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	
+%\tableofcontents
+
+\begin{abstract}
+	
+\end{abstract}
+
+\title{Extending spans of cospans beyond topoi}
+\author{Daniel Cicala}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A BICATEGY FOR REWRITING OPEN GRAPHS
+\section{Rewriting open graphs}
+\label{sec:RewritingOpenGraphs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Intuitively, the notion of an open graph is rather simple.  Take a directed graph and declare some of the nodes to be inputs and others to be outputs, for instance
+\[
+\includegraphics{(Open_Graph)_1}
+\]
+Whenever there is a bijection between the inputs of one graph and the outputs of another, we can connect them in a way described by the bijection.  This process is provides a way to turn a pair of compatible open graphs into a single open graph.  Indeed, we cannot connect 
+\[
+\includegraphics{(Open_Graph)_2}
+\]
+to the above open graph, though we can connect 
+\[
+\includegraphics{(Open_Graph)_3}
+\]
+to form the open graph
+\[
+\includegraphics{(Open_Graph)_4}
+\]
+
+This is made precise using cospans and pushout as follows. Consider the functor $N \from \cat{Set} \to \cat{Graph}$ that assigns the edgeless graph with node set $X$ to a set $X$.  An \emph{open graph} is then a cospan in the category $\cat{Graph}$ of the form $N(X) \to G \gets N(Y)$ for sets $X$ and $Y$. We will denote this open graph by $G$ when the legs of the cospan do not need to be explicit.  Also, call the left leg $N(X)$ of the cospan the \emph{inputs} of $G$ and the right leg $N(Y)$ the \emph{outputs} of $G$.  Suppose we have another open graph $G'$ with inputs $N(Y)$ and outputs $N(Z)$.  Then we can compose the cospans 
+\[
+N(X) \to G \gets N(Y) \to G' \gets N(Z). 
+\] 
+This is certainly not an open graph, but pushing out over the span $G \gets N(Y) \to G'$ induces the open graph  
+\[
+N(X) \to G +_{N(Y)} G' \gets N(Z).
+\] 
+By taking isomorphism classes of these pushouts, we obtain a category whose objects are those in the image of $N$ and morphisms are open graphs. 
+
+But we can do better! Indeed, we have only just described the first layer of a symmetric monoidal and compact closed bicategory. This bicategory was introduced by the author in \cite{Cic} under the name $\cat{Rewrite}$. It was shown that $\cat{Rewrite}$ is symmetric monoidal and compact closed in a joint work with Courser \cite{CicCours}. However, before we try to generalize the idea of $\cat{Rewrite}$, we briefly revisit the background of this bicategory. 
+
+Given a topos $\cat{T}$, there is a symmetric monoidal and compact closed bicategory $\bimonspcsp{T}$, or $\cat{msc}(\cat{T})$ for short, consisting of 
+\begin{itemize}
+	\item (0-cells) objects of $\cat{T}$,
+	\item (1-cells) cospans in $\cat{T}$, and
+	\item (2-cells) isomorphism classes of monic spans of cospans in $\cat{T}$.
+\end{itemize} 
+The 2-cells are diagrams 
+\[
+	\includegraphics{(mscT)+(2cell_General_Form)}
+\] 
+where `$\rightarrowtail$' denotes a monic $\cat{T}$-morphism.  
+
+Letting $\cat{T}$ be the topos $\cat{Graph}$ of directed graphs, there is a symmetric monoidal and compact closed sub-bicategory of $\cat{msc}(\cat{Graph})$ called $\cat{Rewrite}$ whose $0$-cells are exactly the edgeless graphs, and full in $1$-cells and $2$-cells. The idea of $\cat{Rewrite}$ is that the $1$-cells are open graphs and the $2$-cells are the ways to rewrite a graph into another while preserving the input and output nodes. By rewriting, we mean double pushout graph rewriting \cite{Corr_AlgAppGraphTrans}. This means that restricting the $2$-cells to spans with monic legs is not overly restrictive since many authors only consider monic double pushout rewriting rules.  
+
+The motivation for constructing $\cat{Rewrite}$ is not necessarily to study it directly, but rather for it to serve as an ambient context in which to generate symmetric monoidal and compact closed sub-bicategories on some collection of open graphs and rewriting rules. Of course, the collection that one would use depends on their interest. For instance, if one were interested in topological quantum field theories, Courser and the author categorify the category $\cat{2Cob}$, the category of smooth compact $1$-dimensional manifolds without boundary and smooth compact oriented cobordisms \cite{CicCours}.
+
+The interest in $\cat{Rewrite}$ is that graphical calculi typically use some version of open graphs as a semantics and equations between graphical terms are given by rewrite rules \cite{Selinger}. However, equations are evil when looking through a categorical lens.  Morally, equations ought to be replaced by isomorphisms. The process of replacing equations with isomorphisms and sets by categories is known as categorification. In this program, we are interested in categorifying certain categories into bicategories. The categories of interest are those whose morphisms are associated to open graphs of some sort. For instance there are various categories of open networks \cite{Dixon_OpenGraphs,Fong_AlgOpenSystems,Pollard_OpenMarkov} which we seek to categorify by interpreting rewrite rules as $2$-cells instead of as providing equations between morphisms.  However, this requires some work.
+
+There is a drawback to this approach which we intend to correct presently.  Namely, in graphical calculi, identities are typically denoted by a wire as in the string diagrams used in the study of monoidal categories.  One might expect, then, that an open graph 
+\begin{equation}
+\label{ex:open_graph_wire}
+\raisebox{-0.75\height}{
+	\includegraphics{(Open_Graph)+(Wire)}
+}
+\end{equation}
+ought to represent the identity on $1$.  However, there in not even a $2$-cell between the identity and \eqref{ex:open_graph_wire}.  Indeed, the only possible graph that can sit in for the black box
+\[
+	\includegraphics{(Open_Graph)+(Wire_Not_Identity)}
+\]
+is the singleton. But then the bottom half of the diagram cannot commute. 
+
+In order to be able to identify \eqref{ex:open_graph_wire} with the identity, we must develop a new framework which does not require the span of cospan legs to be monic.  This means that we must revisit how $\cat{msc}(\cat{T})$ was defined in the first place.  When proving that $\cat{msc}(\cat{T})$ is a bicategory, the assumption of the monic legs appears when showing that interchange holds.  So let us recall the players involved in the interchange law.
+
+Vertical composition uses pullback
+\begin{equation}
+\label{eq:vertical composition}
+	\includegraphics[scale=0.9]{(mscT)+(Vertical_Composition)}
+\end{equation}
+and horizontal composition uses pushout
+\[
+	\includegraphics[scale=0.9]{(mscT)+(Horizontal_Composition)}
+\]
+Pasting composable $2$-cells together
+\begin{equation}
+\label{eq:horizontal composition}
+	\includegraphics[scale=0.9]{(mscT)+(Interchange_Pasting_Diagram)}
+\end{equation}
+gives us composites
+\[
+	\includegraphics[scale=0.9]{(mscT)+(Interchange_Law_Generic_Composite)}
+\]
+where $\Theta = (s' \times_s s) +_y (t' \times_t t'')$ when composing vertically first, then horizontally or $\Theta = (s' +_y t') \times_{s +_y t} (s'' +_y t'')$ when composing horizontally, then vertically.  The interchange law holds if the canonical comparison map
+\begin{equation}
+\label{eq:interchange comparison map}
+	c \from (s' \times_s s'') +_y (t' \times_t t'') 
+	\to (s' +_y t') \times_{s +_y t} (s'' +_y t''),
+\end{equation}
+is invertible. This is because $2$-cells were defined up to isomorphism.  To circumvent requiring invertibility, perhaps we can weaken the definition of $2$-cells in $\cat{msc}(\cat{T})$. 
+
+\part{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A BICATEGY FOR REWRITING OPEN GRAPHS
+\section{Another bicategory of spans of cospans}
+\label{sec:bicat spans of cospans}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Let $\cat{C}$ be a category with finite limits and colimits.  We claim that there is a bicategory $\cat{Span}(\cat{Cospan}(\cat{C}))$, of $\cat{sc}(\cat{C})$ for short, consisting of
+\begin{itemize}
+	\item ($0$-cells) $\cat{C}$-objects,
+	\item ($1$-cells) $\cat{C}$-cospans, and
+	\item ($2$-cells) spans of $\cat{C}$-cospans up to morphism.
+\end{itemize}
+A morphism of spans of $\cat{C}$-cospans is a $\cat{C}$-morphism $\theta$ such that
+\[
+	\includegraphics[]{(scC)+(Map_of_Spans_of_Cospans)}
+\]
+commutes. By \emph{up to morphism}, we mean to identify a span of $\cat{C}$-cospans according the equivalence classes generated by the relation $(\theta, \theta')$ if there is a maps of span of $\cat{C}$-cospans $\theta \to \theta'$. An alternative point of view is to say that $\theta \sim \theta'$ if there is a $\tilde{C}$-morphism of type $\iota (\theta) \to \iota (\theta')$ where $\iota \from \cat{C} \hookrightarrow \tilde{C}$ is the inclusion into the groupoid generated by $\cat{C}$. We shall now endeavor to prove that $\cat{sc}(\cat{C})$ is, in fact, a bicategory. 
+
+Fix a pair of $\cat{C}$-objects $x,y$.  Then there is a category $\cat{sc}(\cat{C})(x,y)$ whose objects are the $\cat{C}$-cospans from $x$ to $y$ and the morphisms are spans of $\cat{C}$-cospans up to morphism.  Composition uses pullback as in \eqref{eq:vertical composition}.  Identity functors $I_x \from \cat{1} \to \cat{SCs}(\cat{C})(x,x)$ pick out the $1$-cell $x \to x \gets x$ and the $2$-cell consisting of $x$ and $\cat{C}$-identities on $x$.  
+
+The composition functor $\circ \from \cat{sc}(\cat{C})(y,z) \times \cat{sc}(\cat{C})(x,y) \to \cat{sc}(\cat{C})(x,z)$ acts on morphisms by taking pushouts as in \eqref{eq:horizontal composition}.  
+It is straight forward to show that $\circ$ preserves identities.  The composition functor also preserves composition.  To show this, one merely needs to find a $\cat{C}$-morphism as is \eqref{eq:interchange comparison map}, but this certainly exists in a canonical way.  
+
+The associator is defined using the associativity up to isomorphism of pullbacks and pushouts.  The unitors are defined using the fact that the pushout of $x \gets x \to y$ is isomorphic to $y$ when the left leg is the identity.  
+
+The remaining axioms are straightforward to workout. Therefore, $\cat{sc}(\cat{C})$ is a bicategory. In fact, when $\cat{sc}(\cat{C})$ has quite a bit more structure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Our bicategory is compact closed}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Our bicategory absorbs monoidalness}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose that $\cat{C} \coloneqq (\cat{C}_0, \otimes, I)$ is a symmetric monoidal category.  Using Shulman's work \cite{Shul}, we will show that $\cat{cs}(\cat{C})$ is a (symmetric, braided) monoidal category. We will not cover the details of Shulman's work here.  The main point we will use, however, is the following theorem.
+
+\begin{thm}[{\cite[{Thm.~1.2}]{Shul}}]
+\label{thm:Shulmans thm}
+	The underlying bicategory of an isofibrant symmetric monoidal double category is symmetric monoidal.  
+\end{thm}
+
+Roughly, a \emph{double category} $\DD$ consists of an object category $\DD_\t{ob}$ and arrow category $\DD_\t{ar}$ along with structure functors satisfying certain equations:
+\begin{itemize}
+	\item $U \from \DD_\t{ob} \to \DD_\t{ar}$ picking out identities,
+	\item $S,T \from \DD_\t{ar} \to \DD_\t{ob}$ picking out sources and targets, and
+	\item $\odot \from \DD_\t{ar} \times_{\DD_\t{ob}} \DD_\t{ar} \to \DD_\t{ar}$ giving the composition, with the pull back taken over $S$ and $T$.
+\end{itemize}
+There are also functors realizing associativity plus left and right unity satisfying several properties and coherence axioms.  This can be depicted by
+\[
+	\includegraphics{(Double_Cat)+(2Cell_General_Form)}
+\]
+where the bullets are $\DD_\t{ob}$-objects, $f,g$ are $\DD_\t{ob}$-morphisms, $M,N$ are $\DD_\t{ar}$-objects, and $a$ is a $\DD_\t{ar}$-morphism.  In case $f$ and $g$ are identities, we say that $a$ is \emph{globular}.
+
+There is a lot to unpack from the definition of a symmetric monoidal double category $\DD = (\DD_0,\otimes,I)$, and we will point the interested reader again to Shulman \cite[Def.~2.9]{Shul}.  The underlying bicategory of $\DD$ is given by
+\begin{itemize}
+	\item ($0$-cells) $\DD_\t{ob}$-objects,
+	\item ($1$-cells) $\DD_\t{ar}$-objects, and
+	\item ($2$-cells) globular $\DD_\t{ar}$-morphisms.
+\end{itemize}
+Also, we say that $\DD$ is \emph{isofibrant} if, for every $\DD_\t{ob}$-morphism $f$, there is a  $\DD_\t{ar}$-object $f'$ together with $\DD_\t{ar}$-morphisms
+\[
+	\includegraphics[]{(Double_Cat)+(Companion_2Cells)}
+\]
+that satisfy the equations
+\[
+	\includegraphics[]{(Double_Cat)+(Companion_Equations)}
+\]
+
+Now that we know what how to interpret the above theorem, we will construct a double category satisfying the necessary hypothesis. Let $\cat{cs}(\CC)$ be the double category given by the categories 
+\[
+	\cat{cs}(\CC)_\t{ob} \coloneqq \cat{Span}(\cat{C})
+\] 
+where $\cat{Span}(\cat{C})$ is the $1$-category of spans in $\cat{C}$, and also by
+\[
+	\cat{cs}(\CC)_\t{ar}
+\]
+whose objects are $\cat{C}$-cospans and morphisms are spans of $\cat{C}$-cospans up to morphism. A morphism in $(\CC)_\t{ar}$ between cospans $x' \to y' \gets z'$ and $x'' \to y'' \gets z''$ is a diagram \todo{arrows wrong direction}
+\begin{equation}
+\label{eq:2morphism csCC generic}
+	\includegraphics[]{(csCC)+(2Morphism_General_Form)}
+\end{equation}
+in $\cat{C}$ up to morphism, by which we mean the obvious extension of notion of span of cospans up to morphism discussed earlier.  The functor $U \from \cat{cs}(\CC)_\t{ob} \to \cat{cs}(\CC)_\t{ar}$ sends a object to the identity cospan on it and sends a morphism $x \to y \gets z$ to 
+\[
+	\includegraphics[]{(csCC)+(Identity_Functor_U)}
+\]
+The source functor $S \from \cat{cs}(\CC)_\t{ar} \to \cat{cs}(\CC)_\t{ob}$ sends an object $x \to y \gets z$ to $x$ and a morphism, say \eqref{eq:2morphism csCC generic}, to $x' \to y' \gets z'$.  Define the target functor $T$ similarly.  The composition functor $\odot \from \DD_\t{ar} \times_{\DD_\t{ob}} \DD_\t{ar} \to \DD_\t{ar}$ is more complicated.  We can illustrate its behavior by
+\[
+	\includegraphics[]{(csCC)+(Composition_Functor)}
+\]
+Then to see whether $\odot$ preserves composition $\circ$, we need to show that 
+\begin{equation}
+\label{eq:Interchange Law for scCC}
+	(\alpha \odot \beta) \circ (\alpha' \odot \beta') = (\alpha \circ \beta) \odot (\alpha' \circ \beta'),
+\end{equation} 
+where
+\[
+	\includegraphics[]{(scCC)+(Alpha_2cell)}
+	\quad
+	\includegraphics[]{(scCC)_(Alpha_Prime_2Cell)}
+\]
+\[
+	\includegraphics[]{(scCC)+(Beta_2Cell)}
+	\quad
+	\includegraphics[]{(scCC)+(Beta_Prime_2Cell)}
+\]
+First, we compute the left hand side of \eqref{eq:Interchange Law for scCC}, which corresponds with horizontal composition before vertical composition. \todo{this proof is in your pictures}
+
+And so it's a double category.
+
+Now, let's show that it is isofibrant.  \todo{proof in your pictures.}
+
+Now, let's show that it is symmetric monoidal double category.  
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% BIBLIOGRAPHY
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{100}	
+%
+\bibitem{Backens}
+M.~Backens, \emph{Completeness and the ZX-calculus}. (2016). Available as \href{https://arxiv.org/abs/1602.08954}{arXiv:1602.08954}.
+%
+\bibitem{Cic} 
+D.~Cicala, 
+\textit{Spans of cospans}.
+Available as \href{https://arxiv.org/abs/1611.07886}{arXiv:1611.07886}.
+%
+\bibitem{CicCours}
+D.~Cicala and K.~Courser,
+\textit{Bicategories of spans and cospans}.
+In preparation.
+%
+\bibitem{CoeckeDuncan_QuantumObs}
+B.~Coecke, and R.~Duncan, \emph{Interacting quantum observables: categorical algebra and diagrammatics}. New Journal of Physics, 13(4), 043016. (2011).
+%
+\bibitem{Corr_AlgAppGraphTrans}
+A.~Corradini, U.~Montanari, F.~Rossi, H.~Ehrig, R.~Heckel, \& M.~L\"{o}we, 
+\textit{Algebraic Approaches to Graph Transformation-Part I: Basic Concepts and Double Pushout Approach}. In Handbook of Graph Grammars, pp. 163-246. (February 1997).
+%
+\bibitem{Dixon_OpenGraphs}
+L.~Dixon, R.~Duncan, and A.~Kissinger, \emph{Open graphs and computational reasoning}. (2010). Available as \href{https://arxiv.org/abs/1007.3794}{arXiv:1007.3794}.
+%
+\bibitem{Fong_AlgOpenSystems}
+B.~Fong, \emph{The Algebra of Open and Interconnected Systems}. (2016). Available as \href{https://arxiv.org/abs/arXiv:1609.05382}{arXiv:1609.05382}. 
+%
+\bibitem{MaclaneMoerdijk}
+S.~MacLane, and I.~Moerdijk, \emph{Sheaves in Geometry and Logic: A First Introduction to Topos Theory}. Springer Science \& Business Media. (2012).
+%
+\bibitem{Pollard_OpenMarkov}
+B.~Pollard, \emph{Open Markov processes: A compositional perspective on non-equilibrium steady states in biology}. Entropy, 18(4), p.140. (2016).
+%
+\bibitem{Selinger}
+P.~Selinger, \emph{A survey of graphical languages for monoidal categories}. New Structures for Physics, pp. 289-355. Springer Berlin Heidelberg. (2010).
+
+\bibitem{Shul} 
+M.~Shulman, 
+Constructing symmetric monoidal bicategories. 
+Available as \href{http://arxiv.org/abs/1004.0993}{arXiv:1004.0993}.
+%
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% END DOCUMENT
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

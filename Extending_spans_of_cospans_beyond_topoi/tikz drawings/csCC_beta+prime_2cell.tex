@@ -1,0 +1,43 @@
+\begin{tikzpicture}
+%
+%
+% SCOPE 1
+%
+%
+
+%
+%
+% SCOPE 2
+%
+%
+\begin{scope}[shift={(6.3,0.2)}]
+\node (1) at (-1.5,1) {$n$};
+\node (2) at (-1.5,0) {$x$};
+\node (3) at (-1.5,-1) {$x'$};
+\node (4) at (0,1) {$p$};
+\node (5) at (0,0) {$y$};
+\node (6) at (0,-1) {$y'$};
+\node (7) at (1.5,1) {$q$};
+\node (8) at (1.5,0) {$z$};
+\node (9) at (1.5,-1) {$z'$};
+%
+\draw [->]  (1) edge (4);
+\draw [->] (2) edge (5);
+\draw [->] (3) edge (6);
+\draw [->] (7) edge (4);
+\draw [->] (8) edge (5);
+\draw [->] (9) edge (6);
+\draw [->] (1) edge (2);
+\draw [->] (4) edge (5);
+\draw [->] (7) edge (8);
+\draw [->] (3) edge (2);
+\draw [->] (6) edge (5);
+\draw [->] (9) edge (8);
+\end{scope}
+%
+% EXTRA STUFF
+%
+
+\node at (3.6,0.2) {$\beta'$};
+\node  at (4.2,0.2) {$=$};
+\end{tikzpicture}

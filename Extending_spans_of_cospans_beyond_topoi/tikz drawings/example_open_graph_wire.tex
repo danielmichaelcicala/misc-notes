@@ -1,0 +1,40 @@
+\begin{tikzpicture}
+%
+%
+%
+\begin{scope}
+\node [zxopen] (1) at (0,0) {};
+\node (r1) at (-0.5,0.5) {};
+\node (r2) at (0.5,-0.5) {};
+\draw [ultra thin, rounded corners] (r1) rectangle (r2);
+\node (a1) at (0.5,0) {};
+\end{scope}
+%
+%
+%
+\begin{scope}[shift={(2,0)}]
+\node [zxopen] (1) at (0,0) {};
+\node [zxopen] (2) at (1,0) {};
+\draw [->-]  (1) to (2);
+\node (r1) at (-0.5,0.5) {};
+\node (r2) at (1.5,-0.5) {};
+\draw [ultra thin, rounded corners] (r1) rectangle (r2);
+\node (a2) at (-0.5,0) {};
+\node (a3) at (1.5,0) {};
+\end{scope}
+%
+%
+%
+\begin{scope}[shift={(5,0)}]
+\node [zxopen] (1) at (0,0) {};
+\node (r1) at (-0.5,0.5) {};
+\node (r2) at (0.5,-0.5) {};
+\draw [ultra thin, rounded corners] (r1) rectangle (r2);
+\node (a4) at (-0.5,0) {};
+\end{scope}
+%
+%
+%
+\draw [->]  (a1) edge (a2);
+\draw [->] (a4) edge (a3);
+\end{tikzpicture}

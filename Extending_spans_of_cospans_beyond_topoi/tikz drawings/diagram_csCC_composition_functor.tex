@@ -1,0 +1,83 @@
+\begin{tikzpicture}
+%
+%
+% SCOPE 1
+%
+%
+\begin{scope}
+\node (1) at (-1,1) {$v'$};
+\node (2) at (-1,0) {$v$};
+\node (3) at (-1,-1) {$v''$};
+\node (4) at (0,1) {$w'$};
+\node (5) at (0,0) {$w$};
+\node (6) at (0,-1) {$w''$};
+\node (7) at (1,1) {$x'$};
+\node (8) at (1,0) {$x$};
+\node (9) at (1,-1) {$x''$};
+\node (10) at (2,1) {$y'$};
+\node (11) at (2,0) {$y$};
+\node (12) at (2,-1) {$y''$};
+\node (13) at (3,1) {$z'$};
+\node (14) at (3,0) {$z$};
+\node (15) at (3,-1) {$z''$};
+%
+\draw [->]  (1) edge (4);
+\draw [->] (2) edge (5);
+\draw [->] (3) edge (6);
+\draw [->] (7) edge (4);
+\draw [->] (8) edge (5);
+\draw [->] (9) edge (6);
+\draw [->] (1) edge (2);
+\draw [->] (4) edge (5);
+\draw [->] (7) edge (8);
+\draw [->] (3) edge (2);
+\draw [->] (6) edge (5);
+\draw [->] (9) edge (8);
+\draw [->] (7) edge (10);
+\draw [->] (8) edge (11);
+\draw [->] (9) edge (12);
+\draw [->] (13) edge (10);
+\draw [->] (14) edge (11);
+\draw [->] (15) edge (12);
+\draw [->] (10) edge (11);
+\draw [->] (12) edge (11);
+\draw [->] (13) edge (14);
+\draw [->] (15) edge (14);
+\end{scope}
+%
+%
+% SCOPE 2
+%
+%
+\begin{scope}[shift={(6.1,0)}]
+\node (1) at (-1.5,1) {$v'$};
+\node (2) at (-1.5,0) {$v$};
+\node (3) at (-1.5,-1) {$v''$};
+\node (4) at (0,1) {$w' +_{x'}y'$};
+\node (5) at (0,0) {$w+_xy$};
+\node (6) at (0,-1) {$w'' +_{x''}y''$};
+\node (7) at (1.5,1) {$z'$};
+\node (8) at (1.5,0) {$z$};
+\node (9) at (1.5,-1) {$z''$};
+%
+\draw [->]  (1) edge (4);
+\draw [->] (2) edge (5);
+\draw [->] (3) edge (6);
+\draw [->] (7) edge (4);
+\draw [->] (8) edge (5);
+\draw [->] (9) edge (6);
+\draw [->] (1) edge (2);
+\draw [->] (4) edge (5);
+\draw [->] (7) edge (8);
+\draw [->] (3) edge (2);
+\draw [->] (6) edge (5);
+\draw [->] (9) edge (8);
+\end{scope}
+%
+% EXTRA STUFF
+%
+
+\node (v1) at (3.5,0) {};
+\node (v2) at (4.2,0) {};
+\draw [|->]  (v1) edge node [above] {\scriptsize $\odot$} (v2);
+\end{tikzpicture}

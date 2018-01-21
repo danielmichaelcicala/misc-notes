@@ -1,0 +1,68 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Spans_of_cospans_II.aux
+The style file: amsplain.bst
+Database file #1: mybibliography.bib
+I was expecting a `,' or a `}'---line 25 of file mybibliography.bib
+ :  
+ :  year={2016}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 91 of file mybibliography.bib
+ :  
+ :  year={2010}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 105 of file mybibliography.bib
+ :  
+ :  year={2016}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting an "="---line 139 of file mybibliography.bib
+ :  article 
+ :          number = {140},
+I'm skipping whatever remains of this entry
+Warning--missing journal name in Shulman
+Warning--missing pages in Shulman
+You've used 1 entry,
+            2213 wiz_defined-function locations,
+            504 strings with 4015 characters,
+and the built_in function-call counts, 246 in all, are:
+= -- 16
+> -- 7
+< -- 0
++ -- 3
+- -- 2
+* -- 21
+:= -- 44
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 3
+duplicate$ -- 11
+empty$ -- 21
+format.name$ -- 2
+if$ -- 42
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 2
+newline$ -- 13
+num.names$ -- 2
+pop$ -- 6
+preamble$ -- 1
+purify$ -- 3
+quote$ -- 0
+skip$ -- 6
+stack$ -- 0
+substring$ -- 5
+swap$ -- 3
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 2
+while$ -- 2
+width$ -- 2
+write$ -- 16
+(There were 4 error messages)

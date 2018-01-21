@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+\node (1) at (-0.2,0.2) {$\bullet$};
+\node (2) at (-0.2,-1.2) {$\bullet$};
+\node (3) at (1.2,0.2) {$\bullet$};
+\node (4) at (1.2,-1.2) {$\bullet$};
+\node at (0.5,-0.5) {\scriptsize $\Downarrow a$};
+%
+\draw [->] (1) edge node [above] {\scriptsize $M$} (3);
+\draw [->] (1) edge node [left] {\scriptsize $f$} (2);
+\draw [->] (2) edge node [below] {\scriptsize $N$} (4);
+\draw [->] (3) edge node [right] {\scriptsize $g$} (4);
+%
+\node (v1) at (0.5,0.4) {};
+\node (v2) at (0.5,0) {};
+\node (v3) at (0.5,-1) {};
+\node (v4) at (0.5,-1.4) {};
+
+\draw  (v1) edge (v2);
+\draw  (v3) edge (v4);
+\end{tikzpicture}

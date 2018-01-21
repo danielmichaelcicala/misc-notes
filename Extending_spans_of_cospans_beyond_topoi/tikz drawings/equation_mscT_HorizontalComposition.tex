@@ -1,0 +1,59 @@
+\begin{tikzpicture}
+%
+% LEFT HAND SIDE
+%
+\begin{scope}[shift={(-2.9,-0.7)}]
+\node (1) at (0,0) {$x$};
+\node (3) at (1,1) {$\ell$};
+\node (4) at (1,0) {$s$};
+\node (5) at (1,-1) {$\ell'$};
+\node (7) at (2,0) {$y$};
+\node (8) at (3,1) {$r$};
+\node (9) at (3,0) {$t$};
+\node (10) at (3,-1) {$r'$};
+\node (11) at (4,0) {$z$};
+%
+\draw [->] (1) edge [out=90,in=180] (3);
+\draw [->]  (1) edge (4);
+\draw [->] (1) edge [out=-90,in=180] (5);
+\draw [->] (7) edge [out=90,in=0] (3);
+\draw [->] (7) edge (4);
+\draw [->] (7) edge [out=-90,in=0] (5);
+\draw [>->] (4) edge (3);
+\draw [>->] (4) edge (5);
+\draw [->] (7) edge [out=90,in=180] (8);
+\draw [->]  (7) edge (9);
+\draw [->] (7) edge [out=-90,in=180] (10);
+\draw [->] (11) edge [out=90,in=0] (8);
+\draw [->] (11) edge (9);
+\draw [->] (11) edge [out=-90,in=0] (10);
+\draw [>->] (9) edge (8);
+\draw [>->] (9) edge (10);
+\end{scope}
+%
+% RIGHT HAND SIDE
+%
+\begin{scope}[shift={(4.5,-0.7)}]
+\node (1) at (-1,0) {$x$};
+\node (3) at (0,1) {$\ell +_y r$};
+\node (4) at (0,0) {$s +_y t$};
+\node (5) at (0,-1) {$\ell +_y r$};
+\node (7) at (1,0) {$y$};
+%
+\draw [->] (1) edge [out=90,in=180] (3);
+\draw [->]  (1) edge (4);
+\draw [->] (1) edge [out=-90,in=180] (5);
+\draw [->] (7) edge [out=90,in=0] (3);
+\draw [->] (7) edge (4);
+\draw [->] (7) edge [out=-90,in=0] (5);
+%
+\draw [>->] (4) edge (3);
+\draw [>->] (4) edge (5);
+\end{scope}
+%
+% MIDDLE STUFF
+%
+\node (v1) at (1.5,-0.7) {};
+\node (v2) at (3.1,-0.7) {};
+\draw [|->]  (v1) edge node[shift={(0,0.2)}] {\scriptsize hor comp} (v2);
+\end{tikzpicture}

@@ -1,0 +1,72 @@
+\input{DeletedScenes--Preamble}
+
+\begin{document}
+	
+
+
+\begin{ex}
+	A \emph{corelation} between objects $X$ and $Y$ of a category is a co-subobject of $X+Y$, or rather an equivalence class of epimorphisms $X+Y \to C$ for some object $C$. Taking finite sets and corelations between them gives a symmetric monoidal category $\cat{Corel}$.  Set theoretically, a corelation $C \from X \nrightarrow Y$  is simply an equivalence relation on $X+Y$ given by taking the fibers of the surjection $X+Y \to C$. We get an category $\bispmap{FinSet}_{\text{JE}}$ equivalent to $\cat{Corel}$ by taking the subcategory of finite sets and cospans consisting of all objects and jointly epic cospans.  We can promote $\bispmap{FinSet}_{\text{JE}}$ to a bicategory by defining $\bispmap{FinSet}_{\text{JE}}(X,Y)$ to consist of all maps of cospans. Hence $\bispmap{FinSet}_{\text{JE}}(X,Y)$ is equivalent to the full subcategory of the over-category $X+Y/\cat{FinSet}$ whose objects are the surjective maps $X+Y \to C$. So a $2$-morphism in $\bispmap{FinSet}_{\text{JE}}$ is really just a commuting diagram
+	\[
+	\begin{tikzpicture}
+		\node (A) at (0,1) {$X+Y$};
+		\node (B) at (-1,0) {$C$};
+		\node (C) at (1,0) {$C'$};
+		%
+		\path[->,font=\scriptsize,>=angle 90]
+		(A) edge[->>] node[above]{$$} (B)
+		(A) edge[->>] node[above]{$$} (C)
+		(B) edge node[below]{$\theta$} (C);
+	\end{tikzpicture}
+	\]
+	Note that $\bispmap{FinSet}_{\text{JE}}(X,Y)$ is locally posetal -- that is if $\theta$ does exist, it is the unique $2$-morphism $C \Rightarrow C'$.  Indeed, for $c \in C$, the fiber of $c$ is contained in the fiber of $\theta (c)$ meaning that $\theta$ is completely determined by the corelations.  Inspiration now leads us to promote $\cat{Corel}$ to a bicategory by inserting a $2$-morphism
+	\[
+	\begin{tikzpicture}
+		\node (X) at (0,0) {$X$};
+		\node (Y) at (1,0) {$Y$};
+		%
+		\path[->,font=\scriptsize]
+		(X) edge[out=45,in=135] node[above]{$c$} (Y)
+		(X) edge[out=-45,in=-135] node[below]{$c'$} (Y);
+		%
+		\node () at (0.5,0) {$\Downarrow$};
+	\end{tikzpicture}
+	\]
+	whenever the equivalence relation given by $c$ is contained in that given by $c'$. There is an obvious biequivalence between $\cat{Corel}$ and $\bispmap{FinSet}_{\text{JE}}$. Hence $\cat{Corel}$ is a bicategory of cospans.
+\end{ex}
+
+% EXAMPLE: LIN REL
+%
+\begin{ex}
+	The category $\cat{LinRel}$ of finite dimensional vector spaces and linear relations (subspaces of $V \oplus W$) plays an important role in network theory \cite{BaezErbele_CatControl,FongSobocRap}. As in Fong's thesis \cite{Fong_Thesis},
+	we can identify $\cat{LinRel}$ with the subcategory of the category $\bispmap{FinVec}$ containing all finite dimensional vector spaces and jointly monic spans. The idea is that a jointly monic span $L \from V \tospan W$ gives an injection $L \to V \oplus W$, hence a linear relation $L \from V \nrightarrow W$. Consider the full sub-bicategory $\bispmap{FinVec}_{\text{JM}}$ of $\bispmap{FinVec}$ with all finite dimensional vector spaces and jointly monic spans. Similar to the previous example, the category $\bispmap{FinVec}_{\text{JM}}(V,W)$ is equivalent to the full subcategory of the over-category $\bispmap{FinVec}_{\text{JM}}/V \oplus W$ consisting of monics $L \to V \oplus W$.  Thus, a $2$-morphism can be thought of as the diagram
+	\[
+	\begin{tikzpicture}
+		\node (A) at (0,0) {$V \oplus W$};
+		\node (B) at (-1,1) {$L$};
+		\node (C) at (1,1) {$L'$};
+		%
+		\path[->,font=\scriptsize,>=angle 90]
+		(B) edge[>->] node[above]{} (A)
+		(C) edge[>->] node[above]{} (A)
+		(B) edge node[above]{$\theta$} (C);
+	\end{tikzpicture}
+	\]
+	It is easy to see that $\theta$ is monic and is the unique such morphism making these diagrams commute, assuming that it exists. As above, we promote $\cat{LinRel}$ to a bicategory by introducing a $2$-morphism 
+	\[
+	\begin{tikzpicture}
+		\node (V) at (0,0) {$V$};
+		\node (W) at (1,0) {$W$};
+		%
+		\path[->,font=\scriptsize]
+		(V) edge[out=45,in=135] node[above]{$L$} (W)
+		(V) edge[out=-45,in=-135] node[below]{$L'$} (W);
+		%
+		\node () at (0.5,0) {$\Downarrow$};
+	\end{tikzpicture}
+	\]
+	whenever $L \subseteq L'$.  Hence, $\cat{LinRel}$ is a bicategory of spans.
+\end{ex}
+
+
+
+\end{document}

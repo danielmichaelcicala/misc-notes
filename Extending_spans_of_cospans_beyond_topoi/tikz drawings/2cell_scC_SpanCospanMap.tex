@@ -1,0 +1,25 @@
+\begin{tikzpicture}
+\node (1) at (-0.2,-1.6) {};
+\node (2) at (-0.4,0.2) {};
+\node (3) at (1.4,0.4) {};
+\node (4) at (1.6,-1.4) {};
+\node (5) at (0.6,0) {};
+\node (6) at (0.6,-1) {};
+%
+\draw [->] (1) to[bend left=-5] (2);
+\draw [->] (1) to[bend left=5] (4);
+\draw [->] (1) to[bend left=-10] (6);
+\draw [->] (3) to[bend left=5] (2);
+\draw [->] (3) to[bend left=-5] (4);
+\draw [->] (3) to[bend left=-10] (5);
+\draw [->] (3) to[bend left=10] (6);
+\draw [->] (5) to[bend left=-10] (2);
+\draw [->] (6) to[bend left=10] (2);
+\draw [->] (6) to[bend left=-10] (4);
+\draw [->] (5) to[] node [shift={(0.1,0)}] {\scriptsize $\theta$} (6);
+
+\draw [-,line width=0.2em,white] (1) to[bend left=10] (5);
+\draw [->] (1) to[bend left=10] (5);
+\draw [-,line width=0.2em,white] (5) to[bend left=10] (4);
+\draw [->] (5) to[bend left=10] (4);
+\end{tikzpicture}

@@ -1,0 +1,140 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{mystyle}
+  [2011/01/11 v0.01 LaTeX package for my own purpose]
+
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-3in}
+\calclayout
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+%  LOAD PACKAGES
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+
+\RequirePackage{amsfonts, amsthm, amssymb, amsmath, stmaryrd, etoolbox}
+\RequirePackage{comment}
+\RequirePackage{mathtools}
+\RequirePackage{graphicx,caption,subcaption}
+\RequirePackage{todonotes}
+\RequirePackage{xcolor}
+\RequirePackage{url}
+
+\usepackage[inline]{enumitem}
+\setlist{itemsep=0em, topsep=0em, parsep=0em}
+\setlist[enumerate]{label=(\alph*)}
+
+\usepackage{tikz}
+\usepackage[all,2cell]{xy}
+\usetikzlibrary{matrix,arrows,shapes,decorations.markings,decorations.pathreplacing}
+\tikzset{->-/.style={decoration={%
+	markings,
+	mark=at position .5 with {\arrow{>}}},postaction={decorate}}
+}
+\tikzset{->-pos/.style={decoration={%
+	markings,
+	mark=at position #1 with {\arrow{>}}},postaction={decorate}}
+}
+
+\usepackage{hyperref}
+\definecolor{hyperrefcolor}{rgb}{0,0,0.7}
+\hypersetup{colorlinks,linkcolor={hyperrefcolor},citecolor={hyperrefcolor},urlcolor={hyperrefcolor}}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+% NEW COMMANDS
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\MM}{\mathbb{M}}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\cat}[1]{\mathbf{#1}}
+\newcommand{\dblcat}[1]{\mathbb{#1}}
+\renewcommand{\t}[1]{\text{#1}}
+
+\newcommand{\from}{\colon}
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\sm}{\smallsetminus}
+\newcommand{\tospan}{\xrightarrow{\mathit{sp}}}
+\newcommand{\tocospan}{\xrightarrow{\mathit{csp}}}
+\newcommand{\diagram}[1]{\raisebox{-0.5\height}{\includegraphics{#1}}}
+
+%  macros for (co)span bicategories
+\newcommand{\bispmap}[1]{\mathbf{Sp(#1)}}
+\newcommand{\dblspmap}[1]{\mathbb{S}\mathbf{p(#1)}}
+\newcommand{\bicspmap}[1]{\mathbf{Csp(#1)}}
+\newcommand{\dblcspmap}[1]{\mathbb{C}\mathbf{sp(#1)}}
+\newcommand{\bispsp}[1]{\mathbf{Sp(Sp(#1))}}
+\newcommand{\dblspsp}[1]{\mathbb{S}\mathbf{p(Sp(#1))}}
+\newcommand{\bicspcsp}[1]{\mathbf{Csp(Csp(#1))}}
+\newcommand{\dblcspcsp}[1]{\mathbb{C}\mathbf{sp(Csp(#1))}}
+\newcommand{\bimonspcsp}[1]{\mathbf{MonicSp(Csp(#1))}}
+\newcommand{\dblmonspcsp}[1]{\mathbb{M}\mathbf{onicSp(Csp(#1))}}
+\newcommand{\biepiccspsp}[1]{\mathbf{EpicCsp(Sp(#1))}}
+\newcommand{\dblepiccspsp}[1]{\mathbb{E}\mathbf{picCsp(Sp(#1))}}
+\newcommand{\spcsp}[1]{\mathbf{Sp(Csp(#1))}}
+
+% defining arrow with a vertical line through it
+\makeatletter
+\def\slashedarrowfill@#1#2#3#4#5{%
+	$\m@th\thickmuskip0mu\medmuskip\thickmuskip\thinmuskip\thickmuskip
+	\relax#5#1\mkern-7mu%
+	\cleaders\hbox{$#5\mkern-2mu#2\mkern-2mu$}\hfill
+	\mathclap{#3}\mathclap{#2}%
+	\cleaders\hbox{$#5\mkern-2mu#2\mkern-2mu$}\hfill
+	\mkern-7mu#4$%
+}
+\def\rightslashedarrowfill@{%
+	\slashedarrowfill@\relbar\relbar\mapstochar\rightarrow}
+\newcommand{\xslashedrightarrow}[2][]{%
+	\ext@arrow 0055{\rightslashedarrowfill@}{#1}{#2}}
+\makeatother
+
+\newcommand{\hto}{\xslashedrightarrow{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  DECLARE MATH OPERATORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ob}{Ob}
+\DeclareMathOperator{\arr}{arr}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Bij}{Bij}
+\DeclareMathOperator{\Sub}{Sub}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  ENVIRONMENTS AND COUNTERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{notation}[thm]{Notation}
+
+\theoremstyle{definition}
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{defn}[thm]{Definition}
+
+%\setcounter{tocdepth}{1} % Sets depth for table of contents. 
+
+
+\endinput

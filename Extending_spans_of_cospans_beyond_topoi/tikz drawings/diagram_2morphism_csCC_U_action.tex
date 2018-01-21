@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+\node (1) at (-1,1) {$x$};
+\node (2) at (-1,0) {$x$};
+\node (3) at (-1,-1) {$x$};
+\node (4) at (0,1) {$y$};
+\node (5) at (0,0) {$y$};
+\node (6) at (0,-1) {$y$};
+\node (7) at (1,1) {$z$};
+\node (8) at (1,0) {$z$};
+\node (9) at (1,-1) {$z$};
+%
+\draw [->]  (1) edge (4);
+\draw [->] (2) edge (5);
+\draw [->] (3) edge (6);
+\draw [->] (7) edge (4);
+\draw [->] (8) edge (5);
+\draw [->] (9) edge (6);
+\draw [->] (1) edge [left] node {\scriptsize id} (2);
+\draw [->] (4) edge [left] node {\scriptsize id} (5);
+\draw [->] (7) edge [left] node {\scriptsize id}(8);
+\draw [->] (3) edge [left] node {\scriptsize id} (2);
+\draw [->] (6) edge [left] node {\scriptsize id} (5);
+\draw [->] (9) edge [left] node {\scriptsize id} (8);
+\end{tikzpicture}
